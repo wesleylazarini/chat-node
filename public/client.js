@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         messageElement.innerHTML = `
             <div class="meta">
-                <span class="username">${message.username}</span> - <span class="time">${time}</span>
+                <span class="username">${message.username}  >> </span><span class="time">${time}</span>
                 <button class="copy-btn" title="Copiar mensagem">📋</button>
             </div>
             <div class="text">

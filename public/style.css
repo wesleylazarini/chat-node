@@ -132,6 +132,12 @@ body.dark .message.in {
     align-items: center;
 }
 
+.message .time {
+    font-style: italic;
+    font-weight: normal;
+    margin-left: 6px;
+}
+
 .chat-form-container {
     padding: 10px 20px;
     background-color: var(--header-light);
