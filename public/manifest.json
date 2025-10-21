@@ -1,0 +1,21 @@
+{
+  "name": "Chat em Tempo Real",
+  "short_name": "Chat",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#202c33",
+  "description": "Um aplicativo de chat em tempo real.",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
