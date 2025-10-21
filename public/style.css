@@ -128,6 +128,8 @@ body.dark .message.in {
     font-size: 0.8em;
     font-weight: bold;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .chat-form-container {
@@ -257,22 +259,15 @@ body.dark #user-list li {
 
 /* Estilos para o botão de copiar */
 .copy-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: rgba(0,0,0,0.1);
+    background: transparent;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 0.8em;
-    padding: 3px 6px;
-    opacity: 0;
-    transition: opacity 0.2s;
+    font-size: 1em;
+    padding: 0;
+    margin-left: 8px;
+    color: inherit;
 }
 
-.message:hover .copy-btn {
-    opacity: 1;
-}
 
 /* Estilos para o modal de confirmação */
 .confirm-buttons {

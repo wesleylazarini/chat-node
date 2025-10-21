@@ -79,14 +79,52 @@ document.addEventListener('DOMContentLoaded', () => {
         const copyBtn = e.target.closest('.copy-btn');
         if (copyBtn) {
             const messageText = copyBtn.closest('.message').querySelector('.text').innerText;
-            navigator.clipboard.writeText(messageText).then(() => {
-                copyBtn.innerText = 'Copiado!';
-                setTimeout(() => {
-                    copyBtn.innerText = '📋';
-                }, 1500);
-            }).catch(err => {
-                console.error('Erro ao copiar texto: ', err);
-            });
+            
+            // Fallback function for copying to clipboard
+            const fallbackCopyTextToClipboard = (text) => {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                
+                // Avoid scrolling to bottom
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        copyBtn.innerText = 'Copiado!';
+                        setTimeout(() => {
+                            copyBtn.innerText = '📋';
+                        }, 1500);
+                    } else {
+                        console.error('Fallback: Falha ao copiar texto');
+                    }
+                } catch (err) {
+                    console.error('Fallback: Erro ao copiar texto', err);
+                }
+
+                document.body.removeChild(textArea);
+            };
+
+            // Use modern clipboard API if available, otherwise use fallback
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(messageText).then(() => {
+                    copyBtn.innerText = 'Copiado!';
+                    setTimeout(() => {
+                        copyBtn.innerText = '📋';
+                    }, 1500);
+                }).catch(err => {
+                    console.error('Erro ao copiar texto com a API moderna, usando fallback: ', err);
+                    fallbackCopyTextToClipboard(messageText);
+                });
+            } else {
+                fallbackCopyTextToClipboard(messageText);
+            }
         }
     });
 
@@ -173,9 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const time = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         messageElement.innerHTML = `
-            <button class="copy-btn" title="Copiar mensagem">📋</button>
             <div class="meta">
                 <span class="username">${message.username}</span> - <span class="time">${time}</span>
+                <button class="copy-btn" title="Copiar mensagem">📋</button>
             </div>
             <div class="text">
                 ${message.text}
