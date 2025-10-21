@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h1>Chat em Tempo Real</h1>
+            <div class="header-icons">
+                <button id="user-list-btn" title="Usuários Online">👤</button>
+                <button id="clear-chat-btn" title="Limpar Chat">🗑️</button>
+                <button id="theme-switcher" title="Mudar Tema">🌙</button>
+            </div>
+        </header>
+        <main class="chat-messages" id="chat-messages"></main>
+        <footer class="chat-form-container">
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off">
+                <button type="submit">➡️</button>
+            </form>
+        </footer>
+    </div>
+
+    <div id="username-modal" class="modal">
+        <div class="modal-content">
+            <h2>Bem-vindo!</h2>
+            <p>Por favor, digite seu nome de usuário para entrar no chat.</p>
+            <form id="username-form">
+                <input type="text" id="username-input" placeholder="Seu nome de usuário">
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="user-list-modal" class="modal">
+        <div class="modal-content">
+            <h2>Usuários Online</h2>
+            <ul id="user-list">
+                <!-- Usuários serão inseridos aqui pelo client.js -->
+            </ul>
+            <button id="close-user-list" class="modal-close-btn">Fechar</button>
+        </div>
+    </div>
+
+    <div id="confirm-clear-modal" class="modal">
+        <div class="modal-content">
+            <h3>Limpar Histórico</h3>
+            <p>Você tem certeza de que deseja apagar todas as mensagens? Esta ação não pode ser desfeita.</p>
+            <div class="confirm-buttons">
+                <button id="confirm-clear-yes" class="danger-btn">Confirmar</button>
+                <button id="confirm-clear-no" class="secondary-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
